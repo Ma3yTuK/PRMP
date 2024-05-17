@@ -427,6 +427,8 @@ class Calculator(
             index++
         }
 
+
+
         while (operations.isNotEmpty()) {
             if (operands.size < 2)
                 throw Exception("Invalid string")
@@ -456,5 +458,40 @@ class Calculator(
             throw Exception("Invalid string")
 
         return result?.setScale(precision, RoundingMode.HALF_EVEN)?.stripTrailingZeros()?.toPlainString() ?: ""
+    }
+
+    fun build_list(text: String): MutableList<CalcObject>? {
+        val result: MutableList<CalcObject> = mutableListOf()
+        var currentString = text
+
+        while (currentString.isNotEmpty()) {
+            when {
+                currentString.startsWith(UnaryOperation.SIN.value) -> result.add(UnaryOperation.SIN)
+                currentString.startsWith(UnaryOperation.COS.value) -> result.add(UnaryOperation.COS)
+                currentString.startsWith(UnaryOperation.TAN.value) -> result.add(UnaryOperation.TAN)
+                currentString.startsWith(UnaryOperation.ASIN.value) -> result.add(UnaryOperation.ASIN)
+                currentString.startsWith(UnaryOperation.ACOS.value) -> result.add(UnaryOperation.ACOS)
+                currentString.startsWith(UnaryOperation.ATAN.value) -> result.add(UnaryOperation.ATAN)
+                currentString.startsWith(BinaryOperation.SUB.value) -> result.add(BinaryOperation.SUB)
+                currentString.startsWith(BinaryOperation.ADD.value) -> result.add(BinaryOperation.ADD)
+                currentString.startsWith(BinaryOperation.LOG.value) -> result.add(BinaryOperation.LOG)
+                currentString.startsWith(BinaryOperation.POW.value) -> result.add(BinaryOperation.POW)
+                currentString.startsWith(BinaryOperation.DIV.value) -> result.add(BinaryOperation.DIV)
+                currentString.startsWith(BinaryOperation.MUL.value) -> result.add(BinaryOperation.MUL)
+                currentString.startsWith(NonBinaryOperation.PAR_O.value) -> result.add(NonBinaryOperation.PAR_O)
+                currentString.startsWith(NonBinaryOperation.PAR_C.value) -> result.add(NonBinaryOperation.PAR_C)
+                currentString.startsWith(NonBinaryOperation.PI.value) -> result.add(NonBinaryOperation.PI)
+                currentString.startsWith(NonBinaryOperation.E.value) -> result.add(NonBinaryOperation.E)
+                currentString.startsWith(NonBinaryOperation.FACT.value) -> result.add(NonBinaryOperation.FACT)
+                else -> {
+                    val match = NUMBER_REGEX.matchAt(currentString, 0) ?: return null
+
+                    result.add(Operand(match.value))
+                }
+            }
+            currentString = currentString.substring(result.last().value.length)
+        }
+
+        return result
     }
 }

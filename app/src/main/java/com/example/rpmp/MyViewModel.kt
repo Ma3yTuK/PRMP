@@ -10,12 +10,14 @@ data class UiState (
     val result: String = "",
     val precision: Int = 128,
     val width: Int = 4096,
-    val calcObjects: MutableList<CalcObject> = mutableListOf()
+    val calcObjects: MutableList<CalcObject> = mutableListOf(),
+    val text: String = "",
+    val recomposeKey: Boolean = true,
+    val isBroken: Boolean = false
 )
 
 
 class MyViewModel : ViewModel() {
-
     var uiState by mutableStateOf(UiState())
         private set
 
@@ -30,7 +32,14 @@ class MyViewModel : ViewModel() {
         }
     }
 
+    fun setText(text: String) {
+        uiState = uiState.copy(text = text)
+    }
+
     fun calculate(calcObjects: List<CalcObject>) {
+        if (uiState.isBroken)
+            return
+
         lastThread?.interrupt()
         uiState = uiState.copy(result = "")
 
@@ -55,5 +64,14 @@ class MyViewModel : ViewModel() {
             }
         }
         lastThread?.start()
+    }
+
+    fun setRecompose() {
+        uiState = uiState.copy(recomposeKey = !uiState.recomposeKey)
+    }
+
+    fun setValue(text: String) {
+        val list = calculator.build_list(text)
+        uiState = uiState.copy(calcObjects = list ?: mutableListOf<CalcObject>(), isBroken = list == null, text = text, result = "")
     }
 }

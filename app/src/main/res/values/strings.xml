@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">RPMP</string>
+    <string name="asset_statements" translatable="false">
+    [{
+      \"include\": \"http://192.168.0.105:5000/.well-known/assetlinks.json\"
+    }]
+    </string>
 </resources>

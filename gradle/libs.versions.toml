@@ -1,4 +1,5 @@
 [versions]
+fg = "4.4.1"
 agp = "8.3.2"
 kotlin = "1.9.0"
 coreKtx = "1.13.1"
@@ -9,8 +10,18 @@ lifecycleRuntimeKtx = "2.7.0"
 activityCompose = "1.9.0"
 composeBom = "2024.05.00"
 lifecycleViewmodelCompose = "2.7.0"
+appcompat = "1.6.1"
+cameraMlkitVision = "1.4.0-alpha05"
+material = "1.12.0"
+activity = "1.9.0"
+constraintlayout = "2.1.4"
+textRecognition = "16.0.0"
+navigationCompose = "2.7.7"
+credentials = "1.3.0-alpha03"
+fireBom = "33.0.0"
 
 [libraries]
+firebase-bom = { group = "com.google.firebase", name = "firebase-bom", version.ref = "fireBom" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
@@ -20,14 +31,30 @@ androidx-activity-compose = { group = "androidx.activity", name = "activity-comp
 androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "composeBom" }
 androidx-lifecycle-viewmodel-compose = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "lifecycleViewmodelCompose" }
 androidx-ui = { group = "androidx.compose.ui", name = "ui" }
+firebase-messaging = { group = "com.google.firebase", name = "firebase-messaging" }
+firebase-analytics = { group = "com.google.firebase", name = "firebase-analytics" }
 androidx-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
 androidx-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
 androidx-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
 androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
 androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
+androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
+androidx-camera-mlkit-vision = { group = "androidx.camera", name = "camera-mlkit-vision", version.ref = "cameraMlkitVision" }
+androidx-camera-core = { group = "androidx.camera", name = "camera-core", version.ref = "cameraMlkitVision" }
+androidx-camera-camera2 = { group = "androidx.camera", name = "camera-camera2", version.ref = "cameraMlkitVision" }
+androidx-camera-lifecycle = { group = "androidx.camera", name = "camera-lifecycle", version.ref = "cameraMlkitVision" }
+androidx-camera-view = { group = "androidx.camera", name = "camera-view", version.ref = "cameraMlkitVision" }
+material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+androidx-activity = { group = "androidx.activity", name = "activity", version.ref = "activity" }
+androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
+text-recognition = { group = "com.google.mlkit", name = "text-recognition", version.ref = "textRecognition" }
+androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigationCompose" }
+androidx-credentials = { group = "androidx.credentials", name = "credentials", version.ref = "credentials" }
+androidx-credentials-play = { group = "androidx.credentials", name = "credentials-play-services-auth", version.ref = "credentials" }
 
 [plugins]
+googleServices = { id = "com.google.gms.google-services", version.ref = "fg" }
 androidApplication = { id = "com.android.application", version.ref = "agp" }
 jetbrainsKotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 
